@@ -6,6 +6,12 @@ export interface Video {
         url: string;
       };
     };
+    image: {
+      asset: {
+        _id: string;
+        url: string;
+      }
+    };
     _id: string;
     postedBy: {
       _id: string;
@@ -27,6 +33,7 @@ export interface Video {
       };
     }[];
     userId: string;
+    // isReceived:boolean;
   }
   
 export interface IUser {
@@ -34,4 +41,5 @@ export interface IUser {
     _type: string;
     userName: string;
     image: string;
+    score:number;
   }

@@ -7,7 +7,7 @@ import Detail from '@/components/Detail';
 
 
 async function getData (id : string) {
-  const response = await fetch(`${BASE_URL}/api/post/${id}`)
+  const response = await fetch(`${BASE_URL}/api/hello/${id}`)
   const postDetails = await response.json()
   return postDetails
 }

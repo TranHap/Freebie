@@ -9,27 +9,27 @@ import NoResults from './NoResults';
 interface IProps {
     data: {
       user: IUser;
-      userVideos: Video[];
-      userLikedVideos: Video[];
+      userPosts: Video[];
+      userLikedPosts: Video[];
     };
   }
 
 const Profile = ({data} : IProps) => {
-  const [showUserVideos, setShowUserVideos] = useState<Boolean>(true);
-  const [videosList, setVideosList] = useState<Video[]>([]);
+  const [showUserPosts, setShowUserPosts] = useState<Boolean>(true);
+  const [postsList, setPostsList] = useState<Video[]>([]);
 
-  const videos = showUserVideos ? 'border-b-2 border-black' : 'text-gray-400';
-  const liked = !showUserVideos ? 'border-b-2 border-black' : 'text-gray-400';
+  const posts = showUserPosts ? 'border-b-2 border-black' : 'text-gray-400';
+  const liked = !showUserPosts ? 'border-b-2 border-black' : 'text-gray-400';
 
-  const {user, userVideos, userLikedVideos} = data
+  const {user, userPosts, userLikedPosts} = data
 
   useEffect(()=> {
-    if(showUserVideos) {
-        setVideosList(userVideos)
+    if(showUserPosts) {
+        setPostsList(userPosts)
     } else {
-        setVideosList(userLikedVideos)
+        setPostsList(userLikedPosts)
     }
-  }, [showUserVideos, userLikedVideos, userVideos])
+  }, [showUserPosts, userLikedPosts, userPosts])
 
   return (
     <div className='w-full'>
@@ -46,7 +46,7 @@ const Profile = ({data} : IProps) => {
         </div>
         <div>
           <div className='text-md md:text-2xl font-bold tracking-wider flex gap-2 items-center justify-center lowercase'>
-            <span>{user?.userName.replace(/\s+/g, '')} </span>
+            <span>{user?.userName?.replace(/\s+/g, '')} </span>
             <GoVerified className='text-blue-400 md:text-xl text-md' />
           </div>
           <p className='text-sm font-medium'> {user?.userName}</p>
@@ -55,25 +55,25 @@ const Profile = ({data} : IProps) => {
       <div>
         <div className='flex gap-10 mb-10 mt-10 border-b-2 border-gray-200 bg-white w-full'>
             <p 
-                className={`text-xl font-semibold cursor-pointer mt-2 ${videos}`} 
-                onClick={()=> setShowUserVideos(true)}
+                className={`text-xl font-semibold cursor-pointer mt-2 ${posts}`} 
+                onClick={()=> setShowUserPosts(true)}
             >
-                Videos
+                Posts
             </p>
             <p 
                 className={`text-xl font-semibold cursor-pointer mt-2 ${liked}`} 
-                onClick={()=> setShowUserVideos(false)}
+                onClick={()=> setShowUserPosts(false)}
             >
                 Liked
             </p>
         </div>
         <div className='flex gap-6 flex-wrap md:justify-start'>
-            {videosList.length ? (
-                videosList.map((post: Video, idx: number) => (
+            {postsList?.length ? (
+                postsList.map((post: Video, idx: number) => (
                     <PostCard post={post} key={idx}/>
                 ))
             ): (
-                <NoResults text={`No ${showUserVideos ? "" :  "liked"} Videos yet`}/>
+                <NoResults text={`No ${showUserPosts ? "" :  "liked"} Videos yet`}/>
             )}
         </div>
       </div>

@@ -17,7 +17,7 @@ import { SanityAssetDocument } from "@sanity/client"
 // Upload our video to sanity server
 import { client } from '@/utils/client';
 
-import { topics } from '@/utils/constants'; 
+import { categories } from '@/utils/constants'; 
 import { BASE_URL } from '@/utils';
 
 const GiveStuffs = () => {
@@ -25,9 +25,10 @@ const GiveStuffs = () => {
     const [isLoading, setIsLoading] = useState(false)
     // Here learn here
     const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>()
+    const [imageAsset, setImageAsset] = useState<SanityAssetDocument | undefined>()
     const [isWrongFileType, setWrongFileType]  = useState(false)
     const [caption, setCaption] = useState('')
-    const [category, setCategory] = useState(topics[0].name)
+    const [category, setCategory] = useState(categories[0].name)
     const [savingPost, setSavingPost] = useState(false)
     const router = useRouter()
     const uploadVideo = async (e:any) => {
@@ -46,6 +47,30 @@ const GiveStuffs = () => {
                 })
                 .then((data) => {
                 setVideoAsset(data);
+                setIsLoading(false);
+            });
+        } else{
+            setIsLoading(false)
+            setWrongFileType(true)
+        }
+    }
+    const uploadImage = async (e:any) => {
+        const selectedFile = e.target.files[0]
+        const fileTypes = ['image/png','image/svg','image/jpeg','image/gif', 'image/tiff'];
+
+        // If the video type is valid -> up it to sanity
+        if(fileTypes.includes(selectedFile.type)) {
+            setWrongFileType(false);
+            setIsLoading(true);
+            console.log("Success upload video")
+            client.assets
+                .upload('image', selectedFile, {
+                contentType: selectedFile.type,
+                filename: selectedFile.name,
+                })
+                .then((data) => {
+                setImageAsset(data);
+                console.log(data)
                 setIsLoading(false);
             });
         } else{
@@ -73,10 +98,38 @@ const GiveStuffs = () => {
                   _type: 'postedBy',
                   _ref: userProfile?._id,
                 },
-                topic: category
+                category: category
               };
 
             await fetch(`${BASE_URL}/api/post`, {
+                method: "POST",
+                body: JSON.stringify(document)
+            })
+        }
+        router.push('/')
+    }
+    const saveImage = async () => {
+        if(caption && imageAsset?._id && category) {
+            setSavingPost(true)
+            const document = {
+                _type: 'post',
+                caption,
+                image: {
+                    _type: 'image',
+                    asset: {
+                      _type: 'reference',
+                      _ref: imageAsset?._id,
+                    },
+                },
+                userId: userProfile?._id,
+                postedBy: {
+                  _type: 'postedBy',
+                  _ref: userProfile?._id,
+                },
+                category: category
+              };
+
+            await fetch(`${BASE_URL}/api/hello`, {
                 method: "POST",
                 body: JSON.stringify(document)
             })
@@ -97,7 +150,7 @@ const GiveStuffs = () => {
                         <p>Uploading...</p>
                     ): (
                         <div>
-                            {videoAsset ? (
+                            {/* {videoAsset ? (
                                 <div>
                                     <video 
                                         src={videoAsset.url}
@@ -107,6 +160,15 @@ const GiveStuffs = () => {
                                     >
 
                                     </video>
+                                    
+                                </div> */}
+                            {imageAsset ? (
+                                <div>
+                                    <img 
+                                     src={imageAsset?.url}
+                                     alt="uploaded-pic"
+                                     className='rounded-xl h-[462px] mt-16 bg-black'
+                                    />
                                 </div>
                             ) : (
                                 <label className="cursor-pointer">
@@ -132,7 +194,7 @@ const GiveStuffs = () => {
                                     <input 
                                         type="file"
                                         name="upload-video"
-                                        onChange={(e) => uploadVideo(e)}
+                                        onChange={(e) => uploadImage(e)}
                                         className="w-0 h-0"
                                     />
                                 </label>
@@ -141,7 +203,7 @@ const GiveStuffs = () => {
                     )}
                     {isWrongFileType && (
                         <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[260px]'>
-                         Please select an video file (mp4 or webm or ogg)
+                         Please select an video file (mp4 or webm or ogg or jpg)
                        </p>
                     )}
                 </div>
@@ -160,13 +222,13 @@ const GiveStuffs = () => {
                     onChange={(e)=> setCategory(e.target.value)}
                     className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
                 >
-                    {topics.map((topic) => (
+                    {categories.map((item) => (
                         <option
-                            key={topic.name}
+                            key={item.name}
                             className=' outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300'
-                            value={topic.name}
+                            value={item.name}
                         >
-                            {topic.name}
+                            {item.title}
                         </option>
                     ))}
                 </select>
@@ -179,7 +241,7 @@ const GiveStuffs = () => {
                         Discard
                     </button>
                     <button
-                        onClick={handlePost}
+                        onClick={saveImage}
                         type='button'
                         className='bg-[#F51997] text-white border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
                     >

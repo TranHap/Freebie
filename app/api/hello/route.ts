@@ -6,7 +6,11 @@ export async function GET(request: Request) {
   const response = NextResponse
   const query = allPostsQuery()
   const data = await client.fetch(query)
-  return response.json(data) 
+  if(data) {
+    return response.json(data)
+  } else {
+      return response.json([])
+  }
 
 }
 

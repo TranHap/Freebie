@@ -9,7 +9,7 @@ export async function GET(request:Request) {
 
   // Get the id by removing from the original url
   const url = request.url
-  const partToRemove = "http://localhost:3000/api/post/";
+  const partToRemove = "http://localhost:3000/api/hello/";
   const id = url.replace(partToRemove, "");
 
   // After get the id, we will create our query

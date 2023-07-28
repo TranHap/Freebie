@@ -5,7 +5,7 @@ import { topicPostsQuery } from "@/utils/queries";
 export async function GET(request:Request) {
     const response = NextResponse
     const url = request.url
-    const partToRemove = "http://localhost:3000/api/discover/";
+    const partToRemove = "http://localhost:3000/api/category/";
     const topic = url.replace(partToRemove, "");
 
     const query = topicPostsQuery(topic)

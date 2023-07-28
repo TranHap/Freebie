@@ -9,6 +9,14 @@ export default {
         type: 'string',
       },
       {
+        name:'image',
+        title:'Image',
+        type:'image',
+        options: {
+          hotspot: true,
+        }
+      },
+      {
         name: 'video',
         title: 'Video',
         type: 'file',
@@ -44,9 +52,19 @@ export default {
         of: [{ type: 'comment' }],
       },
       {
-        name: 'topic',
-        title: 'Topic',
+        name: 'category',
+        title: 'Category',
         type: 'string',
       },
+      {
+        name: 'receiver',
+        title:'Receiver',
+        type: 'receiver'
+      },
+      // {
+      //   name:'isReceived',
+      //   title:'Is Received',
+      //   type:'boolean',
+      // }
     ],
   };

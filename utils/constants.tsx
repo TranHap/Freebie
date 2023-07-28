@@ -1,40 +1,48 @@
 import { BsCode, BsEmojiSunglasses } from 'react-icons/bs';
-import { GiCakeSlice, GiGalaxy, GiLipstick } from 'react-icons/gi';
-import { FaPaw, FaMedal, FaGamepad } from 'react-icons/fa';
-
-export const topics = [
+import { GiBookshelf,GiClothes, GiJewelCrown } from 'react-icons/gi';
+import { FaLaptopMedical } from 'react-icons/fa';
+import {RiPlantLine, RiFridgeLine} from 'react-icons/ri';
+import {LuSofa, LuMicrowave} from 'react-icons/lu'
+export const categories = [
   {
-    name: 'development',
-    icon: <BsCode />,
+    title: 'cây cảnh',
+    icon: <RiPlantLine />,
+    name:'plant',
   },
   {
-    name: 'comedy',
-    icon: <BsEmojiSunglasses />,
+    title: 'nội thất',
+    icon: <LuSofa />,
+    name:'furniture',
   },
   {
-    name: 'gaming',
-    icon: <FaGamepad />,
+    title: 'đồ gia dụng',
+    icon: <RiFridgeLine />,
+    name:'houseware',
   },
   {
-    name: 'food',
-    icon: <GiCakeSlice />,
+    title: 'tài liệu',
+    icon: <GiBookshelf />,
+    name:'document',
   },
   {
-    name: 'dance',
-    icon: <GiGalaxy />,
+    title: 'quần áo',
+    icon: <GiClothes />,
+    name:'clothes'
   },
   {
-    name: 'beauty',
-    icon: <GiLipstick />,
+    title: 'điện tử',
+    icon: <FaLaptopMedical />,
+    name:'electronics'
   },
   {
-    name: 'animals',
-    icon: <FaPaw />,
+    title: 'trang sức',
+    icon: <GiJewelCrown/>,
+    name:'jewelry'
   },
-  {
-    name: 'sports',
-    icon: <FaMedal />,
-  },
+  // {
+  //   title: 'bếp núc',
+  //   icon: <LuMicrowave/>,
+  // },
 ];
 
 export const footerList1 = ['About','Contact']

@@ -37,7 +37,7 @@ const Search = ({posts} : {posts: Video[]})  => {
                     onClick={() => setIsAccounts(false)}
                     className={`text-xl font-semibold cursor-pointer ${isVideos} mt-2`} 
                 >
-                    Videos
+                    Posts
                 </p>
             </div>
             {isAccounts ? (

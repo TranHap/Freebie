@@ -64,17 +64,17 @@ const Navbar = () => {
         {userProfile ? (
           <div className='flex items-center justify-center gap-5 md:gap-10'>
             <Link href='/upload'>
-              <button className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'>
+              <button className='border-2 p-3 md:px-4 text-md bg-[#F51997] hover:bg-white text-white hover:text-black font-semibold flex items-center gap-2 rounded-full'>
                 <IoMdAdd className='text-xl' />{' '}
-                <span className='hidden md:block'>Give Stuffs</span>
+                <span className='hidden md:block'>Cho đồ</span>
               </button>
             </Link>
             {userProfile.image && (
                <Link href={`/profile/${userProfile._id}`}>
                 <>
                   <Image
-                    width={20}
-                    height={20}
+                    width={48}
+                    height={48}
                     className=' rounded-full cursor-pointer'
                     src={userProfile?.image}
                     alt='user-profile'
