@@ -30,7 +30,6 @@ export const allPostsQuery = () => {
         userName,
         image
       },
-
       receiver{
         receiverName,
         receiverAddress,
@@ -118,7 +117,6 @@ export const allPostsQuery = () => {
         receiverAddress,
         receiverPhone,
       },
-      isReceived,
       }
     }`;
     return query;
@@ -173,7 +171,6 @@ export const allPostsQuery = () => {
         receiverAddress,
         receiverPhone,
       },
-      isReceived,
       }
     }`;
   
@@ -217,7 +214,7 @@ export const allPostsQuery = () => {
         receiverAddress,
         receiverPhone,
       },
-      isReceived,
+
       }
     }`;
   
@@ -261,7 +258,6 @@ export const allPostsQuery = () => {
         receiverAddress,
         receiverPhone,
       },
-      isReceived,
       }
     }`;
   
