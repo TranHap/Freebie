@@ -32,29 +32,7 @@ const GiveStuffs = () => {
     const [category, setCategory] = useState(categories[0].name)
     const [savingPost, setSavingPost] = useState(false)
     const router = useRouter()
-    // const uploadVideo = async (e:any) => {
-    //     const selectedFile = e.target.files[0]
-    //     const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
 
-    //     // If the video type is valid -> up it to sanity
-    //     if(fileTypes.includes(selectedFile.type)) {
-    //         setWrongFileType(false);
-    //         setIsLoading(true);
-    //         console.log("Success upload video")
-    //         client.assets
-    //             .upload('file', selectedFile, {
-    //             contentType: selectedFile.type,
-    //             filename: selectedFile.name,
-    //             })
-    //             .then((data) => {
-    //             setVideoAsset(data);
-    //             setIsLoading(false);
-    //         });
-    //     } else{
-    //         setIsLoading(false)
-    //         setWrongFileType(true)
-    //     }
-    // }
     const uploadImage = async (e:any) => {
         const selectedFile = e.target.files[0]
         const fileTypes = ['image/png','image/svg','image/jpeg','image/gif', 'image/tiff'];
@@ -79,36 +57,6 @@ const GiveStuffs = () => {
             setWrongFileType(true)
         }
     }
-    // If the user click the button post 
-    // const handlePost = async () => {
-    //     if(caption && videoAsset?._id && category) {
-    //         setSavingPost(true)
-
-    //         const document = {
-    //             _type: 'post',
-    //             caption,
-    //             video: {
-    //               _type: 'file',
-    //               asset: {
-    //                 _type: 'reference',
-    //                 _ref: videoAsset?._id,
-    //               },
-    //             },
-    //             userId: userProfile?._id,
-    //             postedBy: {
-    //               _type: 'postedBy',
-    //               _ref: userProfile?._id,
-    //             },
-    //             category: category
-    //           };
-
-    //         await fetch(`${BASE_URL}/api/post`, {
-    //             method: "POST",
-    //             body: JSON.stringify(document)
-    //         })
-    //     }
-    //     router.push('/')
-    // }
     const saveImage = async () => {
         if(caption && imageAsset?._id && category) {
             setSavingPost(true)
