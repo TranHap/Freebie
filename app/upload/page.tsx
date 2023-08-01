@@ -1,5 +1,5 @@
 'use client'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 
 // Allow us to re route to the home page
 import { useRouter } from 'next/navigation'
@@ -9,12 +9,9 @@ import { MdDelete } from 'react-icons/md';
 // Use this to know the user
 import useAuthStore from '@/store/authStore';
 
-// After upload video to sanity, it send back data, we want to set the data to our Video Asset, however we have to 
-// define the type of our video Asset, this is due to we are using typescript
 
 import { SanityAssetDocument } from "@sanity/client"
 
-// Upload our video to sanity server
 import { client } from '@/utils/client';
 
 import { categories } from '@/utils/constants'; 
@@ -25,7 +22,6 @@ const GiveStuffs = () => {
     const [isLoading, setIsLoading] = useState(false)
     const id = userProfile?._id
     // Here learn here
-    const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>()
     const [imageAsset, setImageAsset] = useState<SanityAssetDocument | undefined>()
     const [isWrongFileType, setWrongFileType]  = useState(false)
     const [caption, setCaption] = useState('')
@@ -37,11 +33,10 @@ const GiveStuffs = () => {
         const selectedFile = e.target.files[0]
         const fileTypes = ['image/png','image/svg','image/jpeg','image/gif', 'image/tiff'];
 
-        // If the video type is valid -> up it to sanity
+        // If the image type is valid -> up it to sanity
         if(fileTypes.includes(selectedFile.type)) {
             setWrongFileType(false);
             setIsLoading(true);
-            console.log("Success upload video")
             client.assets
                 .upload('image', selectedFile, {
                 contentType: selectedFile.type,
@@ -99,24 +94,12 @@ const GiveStuffs = () => {
                         <p>Đang tải...</p>
                     ): (
                         <div>
-                            {/* {videoAsset ? (
-                                <div>
-                                    <video 
-                                        src={videoAsset.url}
-                                        loop
-                                        controls
-                                        className='rounded-xl h-[462px] mt-16 bg-black'
-                                    >
-
-                                    </video>
-                                    
-                                </div> */}
                             {imageAsset ? (
                                 <div>
                                     <img 
                                      src={imageAsset?.url}
                                      alt="uploaded-pic"
-                                     className='rounded-xl h-[462px] mt-16 bg-black'
+                                     className=' bg-black'
                                     />
                                 </div>
                             ) : (

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { AiFillHome, AiOutlineMenu } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import Discover from './Discover';
-import Rank from './Rank';
+import Rank from './Board';
 import Footer from './Footer';
 import useAuthStore from '@/store/authStore';
 
@@ -15,7 +15,7 @@ const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true)
   const {userProfile } = useAuthStore()
   const pathname = usePathname()
-  const activeLink = 'flex items-center gap-3 hover:bg-slate-300 p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded';
+  const activeLink = 'flex items-center gap-3 hover:bg-slate-300 p-3 justify-center xl:justify-start cursor-pointer font-semibold rounded text-blue';
   const normalLink = 'flex items-center gap-3 hover:bg-slate-300 p-3 justify-center xl:justify-start cursor-pointer font-semibold rounded';
   return (
     <div>
@@ -28,8 +28,8 @@ const Sidebar = () => {
       {showSidebar && (
         <div className='xl:w-600 w-[200px] flex flex-col justify-start mb-10 border-r-2 border-gray-900 xl:border-0 p-3 '>
           <div className='xl:border-b-2 border-gray-200 xl:pb-4'>
-            <Link href="/">
-              <div className={pathname === '/' ? activeLink : normalLink}>
+            <Link href="/main">
+              <div className={pathname === '/main' ? activeLink : normalLink}>
                 <p className="text-2xl"><AiFillHome /></p>
                 <p>Home page </p>
               </div>
@@ -41,9 +41,6 @@ const Sidebar = () => {
             </div>
           )}
           <Discover />
-          <Link href="/rank">
-            <Rank />
-          </Link>
           <Footer />
         </div>   
       )}

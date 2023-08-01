@@ -1,27 +1,41 @@
-
-import NoResults from '@/components/NoResults';
-import PostCard from '@/components/PostCard';
-import { Video } from '@/types';
-import { BASE_URL } from '@/utils';
 import React from 'react';
-import { categories } from '@/utils/constants'; 
-import Main from '@/components/Main';
-import useAuthStore from '@/store/authStore';
-import { useSearchParams  } from 'next/navigation';
+import Image from 'next/image';
+import Logo from '../utils/logo.png';
+import Background from '../utils/backgroundImage.jpg';
 
-
-// async function getData (category : any) {
-//       const response1 = await fetch(`${BASE_URL}/api/hello/${category}`)
-//       const posts  = await response1.json()
-//       return posts
-// }
 
 const Home = async () => {
-  // console.log(posts)
+
   return (
-    <>
-    <Main/>
-    </>
+    <div className='flex gap-5 justify-center items-center h-full'>
+        <div className='flex flex-col justify-start items-start gap-5'>
+          <div className='w-[150px] md:w-[179px]'>
+            <Image
+                className='cursor-pointer'
+                src={Logo}
+                alt='logo'
+                layout='responsive'
+            />
+          </div>
+          <div className='text-5xl'>
+            Best place for give and take
+          </div>
+          <div className='text-2xl text-blue'>
+            Nơi trao đổi và cho đi các sản phẩm cũ nhằm thúc đẩy tính sẻ chia ở cộng đồng,
+            hướng đến một lối sống bền vững trong thời đại kỹ thuật số.
+          </div>
+        </div>
+      <div>
+        <div className='w-[500px] md:w-[529px]'>
+          <Image
+                className='cursor-pointer'
+                src={Background}
+                alt='logo'
+                layout='responsive'
+            />
+        </div>
+      </div>
+    </div>
   )
 }
 

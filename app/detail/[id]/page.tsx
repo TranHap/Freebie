@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { BASE_URL } from '@/utils';
-import { Video } from '@/types';
+import { Post } from '@/types';
 
 import Detail from '@/components/Detail';
 
@@ -16,7 +16,7 @@ async function getData (id : string) {
 const Page = async ({params} : {params: {id: string}}) => {
   
   const id = params.id
-  let postDetails : Video
+  let postDetails : Post
   postDetails = await getData(id)
 
   return (

@@ -5,7 +5,7 @@ import { BASE_URL } from '@/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import useAuthStore from '@/store/authStore';
-import { Video } from '@/types';
+import { Post } from '@/types';
 import React, { useEffect, useRef, useState} from 'react';
 
 // Our icons
@@ -25,7 +25,7 @@ import { client } from '@/utils/client';
 
 
 interface IProps {
-  postDetails : Video
+  postDetails : Post
 }
 
 

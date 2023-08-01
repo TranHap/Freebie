@@ -3,13 +3,13 @@
 import React from 'react'
 import Link from 'next/link';
 import { categories } from '../utils/constants';
-import { useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 const Discover = () => {
-  const searchParams = useSearchParams()
-  const category = searchParams?.get('category')
-  
-  const activeTopicStyle = 'xl:border-2 hover:bg-slate-300 xl:border-[#F51997] px-3 py-2 rounded xl:rounded-full flex items-center gap-2 justify-center cursor-pointer text-[#F51997]';
+  const pathname = usePathname()
+  const partToRemove = "/category/";
+  const category = pathname.replace(partToRemove, "");
+  const activeTopicStyle = 'xl:border-2 hover:bg-slate-300 xl:border-green text-black bg-green px-3 py-2 rounded xl:rounded-full flex items-center gap-2 justify-center cursor-pointer';
   const topicStyle = 'xl:border-2 hover:bg-slate-300 xl:border-gray-300 px-3 py-2 rounded xl:rounded-full flex items-center gap-2 justify-center cursor-pointer text-black';
   return (
     <div className='xl:border-b-2 xl:border-gray-200 pb-6'>

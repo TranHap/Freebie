@@ -1,11 +1,5 @@
-export interface Video {
+export interface Post {
     caption: string;
-    video: {
-      asset: {
-        _id: string;
-        url: string;
-      };
-    };
     image: {
       asset: {
         _id: string;

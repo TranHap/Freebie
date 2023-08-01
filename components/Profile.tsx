@@ -1,6 +1,6 @@
 'use client'
 import React, {useEffect, useState} from 'react'
-import { IUser, Video } from '@/types';
+import { IUser, Post } from '@/types';
 import Image from 'next/image';
 import { GoVerified } from 'react-icons/go';
 import PostCard from './PostCard';
@@ -9,14 +9,14 @@ import NoResults from './NoResults';
 interface IProps {
     data: {
       user: IUser;
-      userPosts: Video[];
-      userLikedPosts: Video[];
+      userPosts: Post[];
+      userLikedPosts: Post[];
     };
   }
 
 const Profile = ({data} :  IProps) => {
   const [showUserPosts, setShowUserPosts] = useState<Boolean>(true);
-  const [postsList, setPostsList] = useState<Video[]>([]);
+  const [postsList, setPostsList] = useState<Post[]>([]);
 
   const posts = showUserPosts ? 'border-b-2 border-black' : 'text-gray-400';
   const liked = !showUserPosts ? 'border-b-2 border-black' : 'text-gray-400';
@@ -69,7 +69,7 @@ const Profile = ({data} :  IProps) => {
         </div>
         <div className='flex gap-6 flex-wrap md:justify-start'>
             {postsList?.length ? (
-                postsList.map((post: Video, idx: number) => (
+                postsList.map((post: Post, idx: number) => (
                     <PostCard post={post} key={idx}/>
                 ))
             ): (

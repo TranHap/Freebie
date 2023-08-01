@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className='w-[100px] md:w-[129px]'>
           <Image
               className='cursor-pointer'
-              src=''
+              src={Logo}
               alt='logo'
               layout='responsive'
           />
@@ -49,13 +49,13 @@ const Navbar = () => {
           <input 
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className="bg-slate-200 focus:bg-white p-3 md:text-md font-medium border-2 
-            border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[400px] rounded-full md:top-0"
+            className="bg-white p-3 md:text-md font-medium border-1 
+            border-blue-300 focus:outline-none focus:border-2 focus:border-blue w-[300px] md:w-[400px] rounded-full md:top-0"
             placeholder='Search items'
           />
           <button
             onClick={handleSearch}
-            className='absolute md:right-5 right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400'
+            className='absolute md:right-5 right-6 top-4 border-l-2 border-blue pl-4 text-2xl text-blue'
           >
             <BiSearch />
           </button>
@@ -64,8 +64,13 @@ const Navbar = () => {
       <div>
         {userProfile ? (
           <div className='flex items-center justify-center gap-5 md:gap-10'>
+            <Link href='/board'>
+              <button className='border-2 p-3 md:px-4 text-md bg-blue hover:bg-purple text-white font-semibold flex items-center gap-2 rounded-full'>
+                <span className='hidden md:block'>Board</span>
+              </button>
+            </Link>
             <Link href='/upload'>
-              <button className='border-2 p-3 md:px-4 text-md bg-[#a8ec64] hover:bg-[#a864ec] text-white hover:text-black font-semibold flex items-center gap-2 rounded-full'>
+              <button className='border-2 p-3 md:px-4 text-md bg-blue hover:bg-purple text-white  font-semibold flex items-center gap-2 rounded-full'>
                 <span className='hidden md:block'>Cho đi</span>
               </button>
             </Link>
@@ -84,20 +89,20 @@ const Navbar = () => {
                   
                     <div 
                         className={`${isToggle ? "flex flex-col gap-3":"hidden" } 
-                        p-6 bg-green absolute top-20 right-0 mx-4 my-2 min-w-[140px] 
-                        z-40 rounded-xl ring-offset-2 ring-2 ring-[#50d71e]`}
+                        p-6 bg-blue absolute top-20 right-0 mx-4 my-2 min-w-[140px] 
+                        z-40 rounded-xl ring-offset-2 ring-2 ring-blue`}
                     >
                             <Link href={`/profile/${userProfile._id}`}>
                                 <div
                                     onClick={() => setToggle(false)}
-                                    className="transform transition-transform hover:scale-110 hover:font-bold"
+                                    className="transform text-white transition-transform hover:scale-110 hover:font-bold"
                                 >
                                     View profile
                                 </div>
                             </Link>
                             <button
                                 type='button'
-                                className=' border-2 p-2 transition-transform hover:scale-110 rounded-full cursor-pointer outline-none shadow-md'
+                                className=' border-2 p-2 text-white transition-transform hover:scale-110 rounded-full cursor-pointer outline-none shadow-md'
                                 onClick={() => {
                                 googleLogout();
                                 removeUser();

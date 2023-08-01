@@ -17,14 +17,6 @@ export default {
         }
       },
       {
-        name: 'video',
-        title: 'Video',
-        type: 'file',
-        options: {
-          hotspot: true,
-        },
-      },
-      {
         name: 'userId',
         title: 'UserId',
         type: 'string',

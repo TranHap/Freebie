@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdOutlineVideocamOff } from 'react-icons/md';
 import { BiCommentX } from 'react-icons/bi';
 import {HiEmojiSad} from 'react-icons/hi';
 

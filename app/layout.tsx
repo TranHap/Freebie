@@ -25,7 +25,7 @@ export default function RootLayout( { children,}: {children: React.ReactNode}) {
                 <div className='h-[98vh] overflow-hidden xl:hover:overflow-auto'>
                   <Sidebar />
                 </div>
-                <div className='mt-4  h-[88vh] flex flex-col gap-10 overflow-auto videos flex-1'>
+                <div className='mt-4  h-[88vh]  gap-10 overflow-auto flex-1'>
                   {children}
                 </div>
               </div>  

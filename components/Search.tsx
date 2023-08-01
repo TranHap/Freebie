@@ -4,16 +4,16 @@ import Image from 'next/image';
 import  { usePathname } from 'next/navigation';
 import { GoVerified } from 'react-icons/go';
 import Link from 'next/link';
-import { IUser, Video } from '@/types';
+import { IUser, Post } from '@/types';
 import useAuthStore from '@/store/authStore';
 import NoResults from './NoResults';
 import PostCard from './PostCard';
 import { useRouter } from 'next/router';
 
-const Search = ({posts} : {posts: Video[]})  => {
+const Search = ({posts} : {posts: Post[]})  => {
     const [isAccounts, setIsAccounts] = useState(false);
     const accounts = isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
-    const isVideos = !isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
+    const isPosts = !isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
     // For searching users accounts
     const { allUsers } = useAuthStore() 
     const pathName = usePathname()
@@ -35,7 +35,7 @@ const Search = ({posts} : {posts: Video[]})  => {
                 </p>
                 <p  
                     onClick={() => setIsAccounts(false)}
-                    className={`text-xl font-semibold cursor-pointer ${isVideos} mt-2`} 
+                    className={`text-xl font-semibold cursor-pointer ${isPosts} mt-2`} 
                 >
                     Posts
                 </p>
@@ -69,7 +69,7 @@ const Search = ({posts} : {posts: Video[]})  => {
             ) : (
                 <div className='md:mt-16 flex flex-wrap gap-6 md:justify-start '>
                       {posts.length ? (
-                        posts.map((post: Video, idx) => (
+                        posts.map((post: Post, idx) => (
                             <PostCard post={post} key={idx} />
                         ))
                       ) : (

@@ -9,7 +9,7 @@ import { BiSearch } from 'react-icons/bi';
 import { IoMdAdd } from 'react-icons/io';
 // import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { GoogleLogin, googleLogout  } from '@react-oauth/google';
-import Logo from '../utils/logo.png';
+import Logo from '@utils/logo.png';
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { createOrGetUser } from '@/utils';
 import useAuthStore from '@/store/authStore';
@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className='w-[100px] md:w-[129px]'>
           <Image
               className='cursor-pointer'
-              src=''
+              src={Logo}
               alt='logo'
               layout='responsive'
           />
@@ -63,6 +63,11 @@ const Navbar = () => {
       <div>
         {userProfile ? (
           <div className='flex items-center justify-center gap-5 md:gap-10'>
+            <Link href='/board'>
+              <button className='border-2 p-3 md:px-4 text-md bg-[#a8ec64] hover:bg-[#a864ec] text-white hover:text-black font-semibold flex items-center gap-2 rounded-full'>
+                <span className='hidden md:block'>Board</span>
+              </button>
+            </Link>
             <Link href='/upload'>
               <button className='border-2 p-3 md:px-4 text-md bg-[#a8ec64] hover:bg-[#a864ec] text-white hover:text-black font-semibold flex items-center gap-2 rounded-full'>
                 <span className='hidden md:block'>Cho đi</span>
