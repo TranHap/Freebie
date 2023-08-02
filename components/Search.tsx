@@ -25,8 +25,8 @@ const Search = ({posts} : {posts: Post[]})  => {
 
 
     return (
-        <div className='w-full'>
-            <div className='flex gap-10 mb-10 border-b-2 border-gray-200 md:fixed z-10 bg-white w-full'>
+        <div className='w-full flex flex-col'>
+            <div className='flex gap-10 mb-10 border-b-2 border-gray-200 md:fixed z-50 bg-white w-full'>
                 <p 
                     onClick={() => setIsAccounts(true)} 
                     className={`text-xl  font-semibold cursor-pointer ${accounts} mt-2`}

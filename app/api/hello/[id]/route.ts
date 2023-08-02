@@ -17,6 +17,7 @@ export async function GET(request:Request) {
 
   // Now, we will fetch the data
   const data = await client.fetch(query)
+  console.log(data[0])
   return response.json(data[0])
 }
 

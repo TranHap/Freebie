@@ -6,12 +6,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useAuthStore from '@/store/authStore';
 import { Post } from '@/types';
-import React, { useEffect, useRef, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 
 // Our icons
 import { MdOutlineCancel } from 'react-icons/md';
-import { BsFillPlayFill } from 'react-icons/bs';
-import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 
 import { GoVerified } from 'react-icons/go'
 
@@ -19,10 +17,6 @@ import { GoVerified } from 'react-icons/go'
 import LikeButton from './LikeButton';
 import Comments from './Comments';
 import ReceiveButton from './ReceiveButton';
-import { POST } from '@/app/api/auth/route';
-import { singleUserQuery } from '@/utils/queries';
-import { client } from '@/utils/client';
-
 
 interface IProps {
   postDetails : Post
