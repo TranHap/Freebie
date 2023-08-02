@@ -9,6 +9,7 @@ import Detail from '@/components/Detail';
 async function getData (id : string) {
   const response = await fetch(`${BASE_URL}/api/hello/${id}`,{ next: { revalidate: 0.1 } })
   const postDetails = await response.json()
+  console.log(postDetails)
   return postDetails
 }
 

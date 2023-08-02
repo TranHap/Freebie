@@ -3,13 +3,15 @@ import { client } from "@/utils/client";
 import { postDetailQuery } from "@/utils/queries";
 import { NextResponse, NextRequest } from "next/server";
 import { uuid } from "uuidv4";
+import { BASE_URL } from '@/utils';
 
 export async function GET(request:Request) {
   const response = NextResponse
 
   // Get the id by removing from the original url
   const url = request.url
-  const partToRemove = "http://localhost:3000/api/hello/";
+  // const partToRemove = "http://localhost:3000/api/hello/";
+  const partToRemove = `${BASE_URL}api/hello/`;
   const id = url.replace(partToRemove, "");
 
   // After get the id, we will create our query
