@@ -8,7 +8,7 @@ import useAuthStore from '@/store/authStore';
 import { IUser } from '@/types';
 
 
-const Board = ({users} : {users: IUser[]}) => {
+const Board = () => {
   const { fetchAllUsers, allUsers } = useAuthStore();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Board = ({users} : {users: IUser[]}) => {
         <div className='text-gray-300 text-xl font-bold hidden xl:block'>Điểm</div>
       </div>
         <div>
-          {users?.map((user: IUser) => (
+          {allUsers?.map((user: IUser) => (
             <div className='flex justify-between items-center mx-8 my-4'>
               <div>
                 <Link href={`/profile/${user._id}`} key={user._id}>
