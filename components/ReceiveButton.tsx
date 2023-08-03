@@ -19,7 +19,7 @@ const ReceiveButton : NextPage<IProps> = ({clickReceive, handleReceive,showForm,
     <div>
            <button
               onClick={clickReceive}
-              className={`${isReceived ? 'bg-slate-300': 'bg-green' } w-full p-3 rounded-sm text-white font-bold`}
+              className={`${isReceived ? 'bg-slate-300': 'bg-[#117b58]' } w-full p-3 rounded-sm text-white font-bold`}
             >
                 {isReceived ? "The item has been received" : "I WANT TO RECEIVE THIS"}
             </button>
