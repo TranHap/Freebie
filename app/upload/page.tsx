@@ -116,7 +116,7 @@ const GiveStuffs = () => {
                                         <p className='text-gray-400 text-center mt-10 text-sm leading-10'>
                                             Gợi ý JPEG,PNG, SVG, GIFF...
                                         </p>
-                                        <p className='bg-[#F51997] text-center mt-8 rounded text-white text-md font-medium p-2 w-52 outline-none'>
+                                        <p className='bg-blue text-center mt-8 rounded text-white text-md font-medium p-2 w-52 outline-none'>
                                             Chọn tệp
                                         </p>
                                     </div>
@@ -172,7 +172,7 @@ const GiveStuffs = () => {
                     <button
                         onClick={saveImage}
                         type='button'
-                        className='bg-[#F51997] text-white border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
+                        className='bg-blue text-white border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
                     >
                         ĐĂNG
                     </button>
