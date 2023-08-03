@@ -190,7 +190,7 @@ export const allPostsQuery = () => {
   };
   
   export const topicPostsQuery = (category: string | string[]) => {
-    const query = `*[_type == "post" && category match '${category}*'] {
+    const query = `*[_type == "post" && category match '${category}*'] | order(_createdAt desc) {
       _id,
       caption,
       image{
