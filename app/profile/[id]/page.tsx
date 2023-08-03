@@ -5,7 +5,7 @@ import { headers } from 'next/headers'
 
 
 async function getData (id : string) {
-  const response = await fetch(`${BASE_URL}/api/profile/${id}`,{ next: { revalidate: 2 } })
+  const response = await fetch(`${BASE_URL}api/profile/${id}`,{ next: { revalidate: 2 } })
   const data = await response.json()
   return  data
 }
