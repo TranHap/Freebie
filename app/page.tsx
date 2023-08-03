@@ -26,7 +26,7 @@ const Home = async () => {
           </div>
         </div>
       <div>
-        <div className='lg:w-[500px] md:w-[450px] w-1/2 p-3 flex justify-center items-center'>
+        <div className='lg:w-[500px] md:w-[450px] w-full p-3 flex justify-center items-center'>
           <Image
                 className='cursor-pointer'
                 src={Background}
