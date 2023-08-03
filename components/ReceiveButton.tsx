@@ -33,7 +33,7 @@ const ReceiveButton : NextPage<IProps> = ({clickReceive, handleReceive,showForm,
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder='Your Name'
-                        className='p-3 border-2  border-slate-200 w-[800px]'
+                        className='p-3 border-2  border-slate-200 lg:w-[800px] w-3/4'
                         required
                       />
                   </div>
@@ -43,7 +43,7 @@ const ReceiveButton : NextPage<IProps> = ({clickReceive, handleReceive,showForm,
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         placeholder='Your Address'
-                        className='p-3 border-2  border-slate-200 w-[800px]'
+                        className='p-3 border-2  border-slate-200 lg:w-[800px] w-3/4'
                         required
                       />
                   </div>
@@ -53,7 +53,7 @@ const ReceiveButton : NextPage<IProps> = ({clickReceive, handleReceive,showForm,
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         placeholder='Your phone number'
-                        className='p-3 border-2  border-slate-200 w-[800px]'
+                        className='p-3 border-2  border-slate-200 lg:w-[800px] w-3/4'
                         required
                   />
                   </div>
