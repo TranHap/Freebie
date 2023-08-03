@@ -26,9 +26,9 @@ const Home = async () => {
           </div>
         </div>
       <div>
-        <div className='lg:w-[500px] md:w-[450px] w-1/2 p-3'>
+        <div className='lg:w-[500px] md:w-[450px] w-1/2 p-3 flex justify-center items-center'>
           <Image
-                className='cursor-pointer object-cover'
+                className='cursor-pointer'
                 src={Background}
                 alt='logo'
                 layout='responsive'
