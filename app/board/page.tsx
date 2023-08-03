@@ -9,6 +9,7 @@ async function getData () {
 
 const BoardPage = async () => {
   const data = await getData()
+  console.log(data)
   return (
     <div>
         <Board users={data}/>
