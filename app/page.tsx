@@ -7,7 +7,7 @@ import Background from '../utils/backgroundImage.jpg';
 const Home = async () => {
 
   return (
-    <div className='flex gap-5 justify-center items-center h-full'>
+    <div className='flex flex-wrap  lg:flex-nowrap gap-5 justify-center items-center h-full'>
         <div className='flex flex-col justify-start items-start gap-5'>
           <div className='w-[150px] md:w-[179px]'>
             <Image
@@ -26,9 +26,9 @@ const Home = async () => {
           </div>
         </div>
       <div>
-        <div className='w-[500px] md:w-[529px]'>
+        <div className='w-[500px] md:w-[529px] p-3'>
           <Image
-                className='cursor-pointer'
+                className='cursor-pointer object-cover'
                 src={Background}
                 alt='logo'
                 layout='responsive'

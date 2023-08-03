@@ -13,6 +13,8 @@ import Logo from '../utils/logo.png';
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { createOrGetUser } from '@/utils';
 import useAuthStore from '@/store/authStore';
+import { FaPrayingHands } from 'react-icons/fa'
+import {DiCoda} from 'react-icons/di'
 
 
 const Navbar = () => {
@@ -66,11 +68,13 @@ const Navbar = () => {
           <div className='flex items-center justify-center gap-5 md:gap-10'>
             <Link href='/board'>
               <button className='border-2 p-3 md:px-4 text-md bg-blue hover:bg-purple text-white font-semibold flex items-center gap-2 rounded-full'>
+                <DiCoda className='text-xl' />{' '}
                 <span className='hidden md:block'>Board</span>
               </button>
             </Link>
             <Link href='/upload'>
               <button className='border-2 p-3 md:px-4 text-md bg-blue hover:bg-purple text-white  font-semibold flex items-center gap-2 rounded-full'>
+                <FaPrayingHands className='text-xl' />{' '}
                 <span className='hidden md:block'>Cho đi</span>
               </button>
             </Link>

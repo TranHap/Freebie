@@ -6,7 +6,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
-import { IoMdAdd } from 'react-icons/io';
+// import { IoMdAdd } from 'react-icons/io';
+import { FaPrayingHands } from 'react-icons/fa'
+import {DiCoda} from 'react-icons/di'
 // import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { GoogleLogin, googleLogout  } from '@react-oauth/google';
 import Logo from '@utils/logo.png';
@@ -70,6 +72,7 @@ const Navbar = () => {
             </Link>
             <Link href='/upload'>
               <button className='border-2 p-3 md:px-4 text-md bg-[#a8ec64] hover:bg-[#a864ec] text-white hover:text-black font-semibold flex items-center gap-2 rounded-full'>
+                <FaPrayingHands className='text-xl' />{' '}
                 <span className='hidden md:block'>Cho đi</span>
               </button>
             </Link>
