@@ -14,7 +14,6 @@ const Board = () => {
   useEffect(() => {
     fetchAllUsers();
   }, [fetchAllUsers]);
-
   return (
     <div className='xl:border-b-2 border-gray-200 pb-4'>
       <p className='text-2xl font-bold m-3 mt-4 '>
