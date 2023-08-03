@@ -107,7 +107,6 @@ const Detail = ({postDetails} : IProps) => {
       const data = await response1.json()
       setReceiver(data.receiver)
       //As other user receive the stuffs, add the score to the owner
-      alert("Success")
       const id = {
         id: post.userId
       }
@@ -116,7 +115,6 @@ const Detail = ({postDetails} : IProps) => {
         body: JSON.stringify(id)
       })
       const user = await response2.json()
-      alert(user.userName)
       setShowForm(false)
     } 
   }  
@@ -194,7 +192,6 @@ const Detail = ({postDetails} : IProps) => {
                     isReceived = {isReceived}
                   />
                 }
-                   {receiver && <div>{name}</div>} 
                    {/* {!isOwner &&  <button onClick={test}>TEST</button>}         */}
             </div>
             {/* Our likes button component*/}
