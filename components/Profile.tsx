@@ -67,7 +67,7 @@ const Profile = ({data} :  IProps) => {
                 Liked
             </p>
         </div>
-        <div className='flex gap-6 flex-wrap md:justify-start'>
+        <div className='flex gap-6 flex-wrap justify-start'>
             {postsList?.length ? (
                 postsList.map((post: Post, idx: number) => (
                     <PostCard post={post} key={idx}/>

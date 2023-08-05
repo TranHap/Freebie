@@ -12,7 +12,7 @@ import useAuthStore from '@/store/authStore';
 
 
 const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(true)
+  const [showSidebar, setShowSidebar] = useState(false)
   const {userProfile } = useAuthStore()
   const pathname = usePathname()
   const activeLink = 'flex items-center gap-3 hover:bg-slate-300 p-3 justify-center xl:justify-start cursor-pointer font-semibold rounded text-blue';
