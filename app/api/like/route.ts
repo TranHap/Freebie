@@ -7,7 +7,6 @@ export async function PUT(request:Request) {
     const response = NextResponse
     //  = request.body
     const { userId, postId, like} = await request.json()
-    console.log("It will be alright")
     const data = 
     //   This only happens when someone likes the post
         like ? await client

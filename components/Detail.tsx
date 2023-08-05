@@ -58,7 +58,7 @@ const Detail = ({postDetails} : IProps) => {
   // For our like button section
   const handleLike = async (like:boolean) => {
     if(userProfile) {
-      const response = await fetch(`${BASE_URL}/api/like`,{
+      const response = await fetch(`${BASE_URL}api/like`,{
         method: "PUT",
         body: JSON.stringify({
           userId : userProfile._id,
@@ -76,7 +76,7 @@ const Detail = ({postDetails} : IProps) => {
     e.preventDefault()
     if(userProfile && comment) {
       setIsPostingComment(true)
-      const response = await fetch(`${BASE_URL}/api/hello/${post._id}`, {
+      const response = await fetch(`${BASE_URL}api/hello/${post._id}`, {
         method: "PUT",
         body: JSON.stringify({
           userId: userProfile._id,

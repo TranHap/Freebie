@@ -78,7 +78,7 @@ const GiveStuffs = () => {
                 body: JSON.stringify(document)
             })
         }
-        router.push('/')
+        router.push('/main')
     }
   return (
     <div className='flex w-full h-full mb-10 absolute left-0 pt-10 absolute top-[60px] lg:top-[70px] bg-[#F8F8F8] justify-center'>
