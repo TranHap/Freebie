@@ -32,8 +32,23 @@ export interface Post {
       receiverName:string;
       receiverAddress:string;
       receiverPhone: string;
-    }
+    };
     // isReceived:boolean;
+    auctioneers: {
+      price:number;
+      _key: string;
+      postedBy: {
+        _ref: string;
+        _id: string;
+      };
+    }[];
+    highestPrice:number;
+    highestAuctioneer: {
+      _id: string;
+      userName: string;
+      image: string;
+    };
+    _createdAt: string;
   }
   
 export interface IUser {

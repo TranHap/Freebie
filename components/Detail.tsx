@@ -7,6 +7,7 @@ import Image from 'next/image';
 import useAuthStore from '@/store/authStore';
 import { Post } from '@/types';
 import React, { useEffect, useState} from 'react';
+import { client } from "@/utils/client";
 
 // Our icons
 import { MdOutlineCancel } from 'react-icons/md';
@@ -17,6 +18,7 @@ import { GoVerified } from 'react-icons/go'
 import LikeButton from './LikeButton';
 import Comments from './Comments';
 import ReceiveButton from './ReceiveButton';
+import AuctionButton from './AuctionButton';
 
 interface IProps {
   postDetails : Post
@@ -24,6 +26,8 @@ interface IProps {
 
 
 const Detail = ({postDetails} : IProps) => {
+
+ 
   // Check the user to handle like button for example
   const { userProfile }: any = useAuthStore();
   // Get the post information so if the user comment  or like, we can modify the post information
@@ -31,30 +35,55 @@ const Detail = ({postDetails} : IProps) => {
   const [comment, setComment] = useState('')
   const [isPostingComment, setIsPostingComment] = useState(false)
   const[showForm, setShowForm] = useState(false)
-  const [receiver, setReceiver] = useState(post.receiver)
-  const [isReceived, setIsReceived] = useState(false);
-  const [name, setName] = useState(receiver?.receiverName)
-  const [address, setAddress] = useState(receiver?.receiverAddress)
-  const [phoneNumber, setPhoneNumber] = useState(receiver?.receiverPhone)
+  // const [receiver, setReceiver] = useState(post.receiver)
+  // const [isReceived, setIsReceived] = useState(false);
+  // const [name, setName] = useState(receiver?.receiverName)
+  // const [address, setAddress] = useState(receiver?.receiverAddress)
+  // const [phoneNumber, setPhoneNumber] = useState(receiver?.receiverPhone)
   const [isOwner, setIsOwner] = useState(false)
+  const [highestAuctioneer, setHighestAuctioneer] = useState(post.highestAuctioneer)
+  // const [auctioneers, setAuctioneers] = useState(post.auctioneers)
+  const [price, setPrice] = useState(0)
+  const [highestPrice, setHighestPrice] = useState(post.highestPrice)
   // If the user click the x button, return back to the homepage
   const router = useRouter()
+  const createdTime = post?._createdAt?.slice(0, 10);
 
+
+  const handleAuction = async () => {
+      if (userProfile && price) {
+        const response1 = await fetch(`${BASE_URL}/api/addAuctioneer`, {
+          method: "PUT",
+          body: JSON.stringify({
+            userId : userProfile._id,
+            postId: post._id,
+            price,
+            highestPrice,
+          })
+        })
+        const data = await response1.json()
+        // alert("success")
+        // setAuctioneers(data.auctioneers)
+        setPost({...post, highestAuctioneer: data.highestAuctioneer})
+        setPost({...post, highestPrice: data.highestPrice})
+        setPrice(0)
+        setShowForm(false)
+    }
+   
+  }
   //Check if this is the owner and there has already been a receiver
-  useEffect(() => {
-    if(userProfile && post.userId === userProfile._id){
-      setIsOwner(true)
-    } else {
-      setIsOwner(false)
-    }
-    if(receiver) {
-      setIsReceived(true)
-    } else {
-      setIsReceived(false)
-    }
-  },[userProfile, post.userId, receiver])
-
-
+  // useEffect(() => {
+  //   if(userProfile && post.userId === userProfile._id){
+  //     setIsOwner(true)
+  //   } else {
+  //     setIsOwner(false)
+  //   }
+  //   if(receiver) {
+  //     setIsReceived(true)
+  //   } else {
+  //     setIsReceived(false)
+  //   }
+  // },[userProfile, post.userId, receiver])
   // For our like button section
   const handleLike = async (like:boolean) => {
     if(userProfile) {
@@ -91,42 +120,42 @@ const Detail = ({postDetails} : IProps) => {
     }
   }
 
-  const handleReceive = async () => {
-    if(userProfile && name && address && phoneNumber) {
-      // Get our receiver information in our post document
-      const response1 = await fetch(`${BASE_URL}/api/addReceiver`, {
-        method:"PUT",
-        body: JSON.stringify({
-          // userId: userProfile._id,
-          postId: post._id,
-          name,
-          address,
-          phoneNumber,
-        })
-      })
-      const data = await response1.json()
-      setReceiver(data.receiver)
-      //As other user receive the stuffs, add the score to the owner
-      const id = {
-        id: post.userId
-      }
-      const response2 = await fetch(`${BASE_URL}/api/clickReceive`, {
-        method:"PUT",
-        body: JSON.stringify(id)
-      })
-      const user = await response2.json()
-      setShowForm(false)
-    } 
-  }  
+  // const handleReceive = async () => {
+  //   if(userProfile && name && address && phoneNumber) {
+  //     // Get our receiver information in our post document
+  //     const response1 = await fetch(`${BASE_URL}/api/addReceiver`, {
+  //       method:"PUT",
+  //       body: JSON.stringify({
+  //         // userId: userProfile._id,
+  //         postId: post._id,
+  //         name,
+  //         address,
+  //         phoneNumber,
+  //       })
+  //     })
+  //     const data = await response1.json()
+  //     setReceiver(data.receiver)
+  //     //As other user receive the stuffs, add the score to the owner
+  //     const id = {
+  //       id: post.userId
+  //     }
+  //     const response2 = await fetch(`${BASE_URL}/api/clickReceive`, {
+  //       method:"PUT",
+  //       body: JSON.stringify(id)
+  //     })
+  //     const user = await response2.json()
+  //     setShowForm(false)
+  //   } 
+  // }  
 
-  const clickReceive = async () => {
-    if(receiver) {
-      alert("It has already been received")
-      setShowForm(false)
-    } else {
-      setShowForm(true)
-    }
-  }
+  // const clickReceive = async () => {
+  //   if(receiver) {
+  //     alert("It has already been received")
+  //     setShowForm(false)
+  //   } else {
+  //     setShowForm(true)
+  //   }
+  // }
 
   return (
     <div className='flex w-full h-[100vh] absolute left-0 top-0 bg-white  flex-wrap lg:flex-nowrap'>
@@ -167,42 +196,55 @@ const Detail = ({postDetails} : IProps) => {
                           {post.postedBy.userName.replace(/\s+/g, '')}{' '}
                           <GoVerified className='text-blue-400 text-xl' />
                     </div>
-                    <p className='text-md'> {post.postedBy.userName}</p>
+                    {/* <p className='text-md'> {post.postedBy.userName}</p> */}
+                    <p className='text-md'> {createdTime}</p>
                   </div>
               </div>
             </Link>
             {/* Our caption */}
-            <div className='px-10'>
+            <div className='px-10 overflow-scroll lg:h-[200px]'>
               <p className=' text-md text-gray-600'>{post.caption}</p>
             </div>
             {/* Our receive button */}
             <div className='mt-10 px-10 w-full'>
                 {userProfile && isOwner == false &&
-                  <ReceiveButton 
-                    clickReceive={() => clickReceive()} 
-                    showForm={showForm} 
+                  // <ReceiveButton 
+                  //   clickReceive={() => clickReceive()} 
+                  //   showForm={showForm} 
+                  //   setShowForm={setShowForm}
+                  //   handleReceive = {handleReceive}
+                  //   name={name}
+                  //   setName={setName}
+                  //   address={address}
+                  //   setAddress = {setAddress}
+                  //   phoneNumber = {phoneNumber}
+                  //   setPhoneNumber={setPhoneNumber}
+                  //   isReceived = {isReceived}
+                  // />
+                  <AuctionButton 
+                    price = {price}
+                    setPrice = {setPrice}
+                    showForm={showForm}
                     setShowForm={setShowForm}
-                    handleReceive = {handleReceive}
-                    name={name}
-                    setName={setName}
-                    address={address}
-                    setAddress = {setAddress}
-                    phoneNumber = {phoneNumber}
-                    setPhoneNumber={setPhoneNumber}
-                    isReceived = {isReceived}
+                    handleAuction={handleAuction}
+                    highestPrice={highestPrice}
+                    setHighestPrice={setHighestPrice}
+                    userProfile={userProfile}
+                    postId = {post._id}
+                    highestAuctioneer = { post.highestAuctioneer }
+                    setHighestAuctioneer = { setHighestAuctioneer }
                   />
                 }
-                   {/* {!isOwner &&  <button onClick={test}>TEST</button>}         */}
             </div>
             {/* Our likes button component*/}
-            <div className='mt-10 px-10 flex justify-start'>
+            {/* <div className='mt-10 px-10 flex justify-start'>
               {userProfile && <LikeButton
                 likes={post.likes}
                 flex='flex'
                 handleLike={() => handleLike(true)}
                 handleDislike={() => handleLike(false)}
               />} 
-            </div>
+            </div> */}
             {/* Our comment section */}
             <div
             >

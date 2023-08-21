@@ -55,7 +55,7 @@ const ReceiveButton : NextPage<IProps> = ({clickReceive, handleReceive,showForm,
                         placeholder='Your phone number'
                         className='p-3 border-2  border-slate-200 lg:w-[800px] w-3/4'
                         required
-                  />
+                      />
                   </div>
                   <div className='m-3 flex justify-between '>
                     <button

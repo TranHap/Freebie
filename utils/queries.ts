@@ -1,3 +1,5 @@
+
+
 export const allPostsQuery = () => {
     const query = `*[_type == "post"] | order(_createdAt desc)
     {
@@ -65,6 +67,21 @@ export const allPostsQuery = () => {
         receiverAddress,
         receiverPhone,
       },
+      auctioneers[]{
+        price,
+        _key,
+        postedBy->{
+          _ref,
+          _id,
+        },
+      },
+      highestPrice,
+      highestAuctioneer->{
+        _id,
+        userName,
+        image
+      },
+      _createdAt,
     }`;
     return query;
   };

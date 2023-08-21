@@ -21,8 +21,8 @@ const Home = async () => {
             Best place for give and take
           </div>
           <div className='text-2xl text-blue'>
-            Nơi trao đổi và cho đi các sản phẩm cũ nhằm thúc đẩy tính sẻ chia ở cộng đồng,
-            hướng đến một lối sống bền vững trong thời đại kỹ thuật số.
+            Nơi mọi người tìm kiếm các câu chuyện đáng quý thông qua các sản phẩm cũ.
+            Đây còn là nơi đưa tình yêu thương và tính sẻ chia của cộng đồng được lan toả.
           </div>
         </div>
       <div>

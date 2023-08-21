@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 // Allow us to re route to the home page
 import { useRouter } from 'next/navigation'
@@ -37,20 +37,39 @@ const GiveStuffs = () => {
         if(fileTypes.includes(selectedFile.type)) {
             setWrongFileType(false);
             setIsLoading(true);
-            client.assets
+            await client.assets
                 .upload('image', selectedFile, {
                 contentType: selectedFile.type,
                 filename: selectedFile.name,
                 })
                 .then((data) => {
                 setImageAsset(data);
-                console.log(data)
                 setIsLoading(false);
             });
+            // Using model to categorize automatically    
+            
         } else{
             setIsLoading(false)
             setWrongFileType(true)
         }
+    }
+    useEffect(() => {
+        getClassName()
+    },[imageAsset])
+
+    const getClassName = async () => {
+        if (imageAsset){
+            const response = await fetch('http://localhost:8080/categorize',{
+                method: "POST",
+                headers: {
+                    'Content-Type': 'text/plain', // Set the appropriate content type
+                },
+                // body: JSON.stringify({image_url : imageAsset.url}),
+                body: imageAsset.url,
+            })
+            const data = await response.text()
+            setCategory(data)     
+        }     
     }
     const saveImage = async () => {
         if(caption && imageAsset?._id && category) {
@@ -70,7 +89,8 @@ const GiveStuffs = () => {
                   _type: 'postedBy',
                   _ref: userProfile?._id,
                 },
-                category: category
+                category: category,
+                highestPrice:0,
               };
 
             await fetch(`${BASE_URL}/api/hello`, {
@@ -146,8 +166,8 @@ const GiveStuffs = () => {
                     onChange={(e) => setCaption(e.target.value)}
                     className='rounded lg:after:w-650 outline-none text-md border-2 border-gray-200 p-2'
                 />
-                <label className='text-md font-medium '>Mục</label>
-                <select
+                {/* <label className='text-md font-medium '>Mục</label> */}
+                {/* <select
                     onChange={(e)=> setCategory(e.target.value)}
                     className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
                 >
@@ -160,7 +180,7 @@ const GiveStuffs = () => {
                             {item.title}
                         </option>
                     ))}
-                </select>
+                </select> */}
                 <div className='flex gap-6 mt-10'>
                     <button
                         onClick={() => {}}

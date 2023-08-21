@@ -53,10 +53,22 @@ export default {
         title:'Receiver',
         type: 'receiver'
       },
-      // {
-      //   name:'isReceived',
-      //   title:'Is Received',
-      //   type:'boolean',
-      // }
+      {
+        name: 'auctioneers',
+        title: 'Auctioneers',
+        type: 'array',
+        of: [{type: 'auctioneers'}],
+      },
+      {
+        name:'highestPrice',
+        title: 'HighestPrice',
+        type:'number',
+      },
+      {
+        name:'highestAuctioneer',
+        title:'HighestAuctioneer',
+        type: 'reference',
+        to: [{ type: 'user' }],
+      }
     ],
   };

@@ -7,9 +7,11 @@ import Detail from '@/components/Detail';
 
 
 async function getData (id : string) {
-  const response = await fetch(`${BASE_URL}/api/hello/${id}`,{ next: { revalidate: 0.1 } })
+  const response = await fetch(`${BASE_URL}/api/hello/${id}`,{ next: { revalidate: 10 } })
   const postDetails = await response.json()
-  console.log(postDetails)
+  console.log(postDetails.highestPrice)
+  console.log(postDetails.highestAuctioneer)
+  console.log(postDetails._createdAt)
   return postDetails
 }
 
