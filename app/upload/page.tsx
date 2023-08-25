@@ -59,18 +59,41 @@ const GiveStuffs = () => {
 
     const getClassName = async () => {
         if (imageAsset){
-            const response = await fetch('http://localhost:8080/categorize',{
+            const response = await fetch('http://0.0.0.0:8000/',{
                 method: "POST",
                 headers: {
-                    'Content-Type': 'text/plain', // Set the appropriate content type
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'text/plain', // Set the appropriate content type
                 },
-                // body: JSON.stringify({image_url : imageAsset.url}),
-                body: imageAsset.url,
+                body: JSON.stringify({image_url : imageAsset.url}),
+                // body: imageAsset.url,
             })
-            const data = await response.text()
-            setCategory(data)     
+            // const data = await response.text()
+            // setCategory(data)     
+            const data = await response.json()
+            const hello = data.label
+            setCategory(hello)
+            alert("success")
         }     
     }
+    // const getClassName2 = async () => {
+    //     alert('nice')
+    //     if (imageAsset){
+    //         const response = await fetch('https://localhost:8080/categorize',{
+    //             method: "POST",
+    //             headers: {
+    //                 // 'Content-Type': 'application/json'
+    //                 'Content-Type': 'text/plain', // Set the appropriate content type
+    //             },
+    //             // body: JSON.stringify({image_url : imageAsset.url}),
+    //             body: imageAsset.url,
+    //         })
+    //         const data = await response.text()
+    //         setCategory(data)     
+            
+    //         alert("success")
+    //     }     
+    // }
     const saveImage = async () => {
         if(caption && imageAsset?._id && category) {
             setSavingPost(true)
@@ -166,6 +189,8 @@ const GiveStuffs = () => {
                     onChange={(e) => setCaption(e.target.value)}
                     className='rounded lg:after:w-650 outline-none text-md border-2 border-gray-200 p-2'
                 />
+                <button onClick={() => getClassName()}>fast API</button>
+                <p>{category}</p>
                 {/* <label className='text-md font-medium '>Mục</label> */}
                 {/* <select
                     onChange={(e)=> setCategory(e.target.value)}
