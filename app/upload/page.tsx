@@ -189,9 +189,9 @@ const GiveStuffs = () => {
                     onChange={(e) => setCaption(e.target.value)}
                     className='rounded lg:after:w-650 outline-none text-md border-2 border-gray-200 p-2'
                 />
-                <button onClick={() => getClassName()}>fast API</button>
-                <p>{category}</p>
-                {/* <label className='text-md font-medium '>Mục</label> */}
+                {/* <button onClick={() => getClassName()}>fast API</button>
+                <p>{category}</p> */}
+                {/* <label className='text-md font-msedium '>Mục</label> */}
                 {/* <select
                     onChange={(e)=> setCategory(e.target.value)}
                     className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
