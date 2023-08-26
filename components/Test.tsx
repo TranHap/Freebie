@@ -51,8 +51,8 @@ const Navbar = () => {
           <input 
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className="bg-white p-3 md:text-md font-medium border-1 
-            border-blue-300 focus:outline-none focus:border-2 focus:border-blue w-[300px] md:w-[400px] rounded-full md:top-0"
+            className=" p-3 md:text-md font-medium border-1 
+            bg-gray-200 focus:bg-white focus:outline-none focus:border-2 focus:border-blue w-[300px] md:w-[400px] rounded-full md:top-0"
             placeholder='Search items'
           />
           <button
@@ -67,13 +67,13 @@ const Navbar = () => {
         {userProfile ? (
           <div className='flex items-center justify-center gap-5 md:gap-10'>
             <Link href='/board'>
-              <button className='border-2 p-3 md:px-4 text-md bg-blue hover:bg-purple text-white font-semibold flex items-center gap-2 rounded-full'>
+              <button className='border-2 p-3 md:px-4 text-md bg-blue text-white font-semibold flex items-center gap-2 rounded-full'>
                 <DiCoda className='text-xl' />{' '}
                 <span className='hidden md:block'>Board</span>
               </button>
             </Link>
             <Link href='/upload'>
-              <button className='border-2 p-3 md:px-4 text-md bg-blue hover:bg-purple text-white  font-semibold flex items-center gap-2 rounded-full'>
+              <button className='border-2 p-3 md:px-4 text-md bg-blue text-white  font-semibold flex items-center gap-2 rounded-full'>
                 <FaPrayingHands className='text-xl' />{' '}
                 <span className='hidden md:block'>Cho đi</span>
               </button>
