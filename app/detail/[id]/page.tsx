@@ -6,7 +6,7 @@ import { Post } from '@/types';
 import Detail from '@/components/Detail';
 
 
-async function getStaticProps (id : string) {
+async function getData (id : string) {
   const response = await fetch(`${BASE_URL}/api/hello/${id}`,{ next: { revalidate: 10 } })
   const postDetails = await response.json()
   console.log(postDetails.highestPrice)
@@ -20,7 +20,7 @@ const Page = async ({params} : {params: {id: string}}) => {
   
   const id = params.id
   let postDetails : Post
-  postDetails = await getStaticProps(id)
+  postDetails = await getData(id)
 
   return (
     <>
